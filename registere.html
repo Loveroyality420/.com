@@ -3,477 +3,487 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta
-    name="description"
-    content="Create your verified Loveroyality profile."
-  >
-
   <title>Create Profile — Loveroyality</title>
-
   <link rel="stylesheet" href="style.css">
-
-  <style>
-    .register-page {
-      min-height: calc(100vh - 76px);
-      padding: 55px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(246, 220, 229, 0.75),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 85% 70%,
-          rgba(215, 173, 98, 0.12),
-          transparent 28%
-        ),
-        linear-gradient(
-          135deg,
-          #fffaf7 0%,
-          #fff1f5 50%,
-          #fffaf7 100%
-        );
-    }
-
-    .register-card {
-      width: 100%;
-      max-width: 510px;
-      padding: 38px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(91, 16, 38, 0.1);
-      border-radius: 26px;
-      box-shadow: 0 25px 70px rgba(91, 16, 38, 0.13);
-      backdrop-filter: blur(18px);
-    }
-
-    .register-header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    .register-heart {
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 17px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 18px;
-      background: linear-gradient(
-        135deg,
-        #fff0f4,
-        #f8dce6
-      );
-      font-size: 25px;
-      box-shadow: 0 10px 25px rgba(201, 79, 114, 0.12);
-    }
-
-    .register-header h1 {
-      color: var(--burgundy);
-      font-size: 31px;
-      letter-spacing: -1px;
-      margin-bottom: 7px;
-    }
-
-    .register-header p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .form-group {
-      margin-bottom: 17px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--burgundy);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .form-input {
-      width: 100%;
-      height: 50px;
-      padding: 0 15px;
-      border: 1px solid rgba(91, 16, 38, 0.13);
-      border-radius: 12px;
-      outline: none;
-      background: #fffafa;
-      color: var(--text);
-      font-size: 14px;
-      transition: 0.2s ease;
-    }
-
-    .form-input:focus {
-      border-color: var(--rose);
-      background: #fff;
-      box-shadow:
-        0 0 0 4px rgba(201, 79, 114, 0.08);
-    }
-
-    .phone-row {
-      display: flex;
-      gap: 8px;
-    }
-
-    .country-code {
-      width: 92px;
-      flex-shrink: 0;
-      height: 50px;
-      padding: 0 10px;
-      border: 1px solid rgba(91, 16, 38, 0.13);
-      border-radius: 12px;
-      background: #fffafa;
-      color: var(--burgundy);
-      outline: none;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .phone-input {
-      flex: 1;
-    }
-
-    .privacy-box {
-      display: flex;
-      gap: 9px;
-      align-items: flex-start;
-      margin: 20px 0;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.55;
-    }
-
-    .privacy-box input {
-      margin-top: 3px;
-      accent-color: var(--rose);
-    }
-
-    .privacy-box a {
-      color: var(--wine);
-      font-weight: 700;
-    }
-
-    .create-button {
-      width: 100%;
-      height: 52px;
-      border: 0;
-      border-radius: 13px;
-      background:
-        linear-gradient(
-          135deg,
-          var(--burgundy),
-          var(--wine)
-        );
-      color: white;
-      font-size: 14px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow:
-        0 12px 28px rgba(91, 16, 38, 0.22);
-      transition: 0.25s ease;
-    }
-
-    .create-button:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 16px 32px rgba(91, 16, 38, 0.28);
-    }
-
-    .login-link {
-      margin-top: 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .login-link a {
-      color: var(--wine);
-      font-weight: 800;
-    }
-
-    .verification-note {
-      margin-top: 22px;
-      padding: 13px 15px;
-      border-radius: 13px;
-      background: #fff5f8;
-      border: 1px solid rgba(201, 79, 114, 0.1);
-      color: #765c66;
-      font-size: 11px;
-      line-height: 1.55;
-    }
-
-    .verification-note strong {
-      color: var(--burgundy);
-    }
-
-    @media (max-width: 520px) {
-      .register-page {
-        padding: 30px 14px;
-      }
-
-      .register-card {
-        padding: 27px 20px;
-        border-radius: 21px;
-      }
-
-      .register-header h1 {
-        font-size: 27px;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <header class="navbar">
+<header class="navbar">
+  <a href="index.html" class="logo">Loveroyality</a>
 
-    <a href="index.html" class="logo">
-      Loveroyality
-    </a>
+  <nav>
+    <a href="login.html">Login</a>
+    <a href="register.html" class="nav-btn">Create Profile</a>
+  </nav>
+</header>
 
-    <nav>
-      <a href="login.html">Login</a>
-      <a href="index.html" class="nav-button">Home</a>
-    </nav>
+<main class="auth-page">
 
-  </header>
+  <section class="auth-card">
 
-  <main class="register-page">
+    <div class="auth-heading">
+      <span class="auth-icon">♥</span>
+      <h1>Create Your Profile</h1>
+      <p>Create a verified relationship profile on Loveroyality.</p>
+    </div>
 
-    <section class="register-card">
+    <form id="registerForm">
 
-      <div class="register-header">
-
-        <div class="register-heart">
-          ❤️
-        </div>
-
-        <h1>Create Your Profile</h1>
-
-        <p>
-          Join Loveroyality with a verified profile.
-        </p>
-
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input
+          type="text"
+          id="fullName"
+          placeholder="Enter your full name"
+          required
+        >
       </div>
 
-      <form id="registerForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          placeholder="Choose a username"
+          required
+        >
+      </div>
 
-        <div class="form-group">
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
 
-          <label for="fullName">
-            Full Name
-          </label>
+        <div class="phone-row">
+          <select id="countryCode">
+            <option value="+880">🇧🇩 +880</option>
+            <option value="+91">🇮🇳 +91</option>
+            <option value="+92">🇵🇰 +92</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+          </select>
 
           <input
-            id="fullName"
-            class="form-input"
+            type="tel"
+            id="phoneNumber"
+            placeholder="1XXXXXXXXX"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="facebookUrl">Facebook Profile URL</label>
+        <input
+          type="url"
+          id="facebookUrl"
+          placeholder="https://facebook.com/yourprofile"
+        >
+      </div>
+
+      <label class="check-row">
+        <input type="checkbox" id="privacyAgree" required>
+        <span>
+          I confirm that the information belongs to me and I agree
+          to have my profile searchable under Loveroyality's privacy rules.
+        </span>
+      </label>
+
+      <div id="recaptcha-container"></div>
+
+      <button
+        type="submit"
+        id="sendOtpBtn"
+        class="primary-btn"
+      >
+        Continue to Phone Verification
+      </button>
+
+    </form>
+
+    <div id="otpSection" class="otp-section" style="display:none;">
+
+      <div class="otp-heading">
+        <h2>Verify Your Phone</h2>
+        <p>Enter the 6-digit OTP sent to your phone.</p>
+      </div>
+
+      <form id="otpForm">
+
+        <div class="form-group">
+          <label for="otpCode">Verification Code</label>
+
+          <input
             type="text"
-            placeholder="Enter your name"
-            autocomplete="name"
-            maxlength="60"
+            id="otpCode"
+            inputmode="numeric"
+            maxlength="6"
+            placeholder="000000"
+            autocomplete="one-time-code"
             required
           >
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="username">
-            Username
-          </label>
-
-          <input
-            id="username"
-            class="form-input"
-            type="text"
-            placeholder="Choose a username"
-            autocomplete="username"
-            maxlength="30"
-            required
-          >
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="phone">
-            Phone Number
-          </label>
-
-          <div class="phone-row">
-
-            <select
-              id="countryCode"
-              class="country-code"
-              aria-label="Country code"
-            >
-              <option value="+880">🇧🇩 +880</option>
-              <option value="+91">🇮🇳 +91</option>
-              <option value="+92">🇵🇰 +92</option>
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+44">🇬🇧 +44</option>
-            </select>
-
-            <input
-              id="phone"
-              class="form-input phone-input"
-              type="tel"
-              placeholder="1XXXXXXXXX"
-              autocomplete="tel"
-              maxlength="15"
-              required
-            >
-
-          </div>
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="facebook">
-            Facebook Profile URL
-          </label>
-
-          <input
-            id="facebook"
-            class="form-input"
-            type="url"
-            placeholder="https://facebook.com/yourprofile"
-            autocomplete="url"
-            required
-          >
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="password">
-            Account Password
-          </label>
-
-          <input
-            id="password"
-            class="form-input"
-            type="password"
-            placeholder="Create a strong password"
-            autocomplete="new-password"
-            minlength="8"
-            required
-          >
-
-        </div>
-
-        <div class="privacy-box">
-
-          <input
-            id="agreement"
-            type="checkbox"
-            required
-          >
-
-          <label for="agreement">
-            I confirm that these are my own details and I agree
-            to make the selected profile information searchable
-            according to Loveroyality's privacy rules.
-          </label>
-
         </div>
 
         <button
           type="submit"
-          class="create-button"
+          class="primary-btn"
         >
-          Continue to Phone Verification
+          Verify & Create Profile
         </button>
 
       </form>
 
-      <div class="verification-note">
-        <strong>🔐 Phone verification required</strong><br>
-        After registration, your phone number will be verified
-        using a one-time password (OTP). Profile changes will
-        also require verification.
-      </div>
+      <button
+        type="button"
+        id="resendOtpBtn"
+        class="secondary-btn"
+      >
+        Resend OTP
+      </button>
 
-      <div class="login-link">
-        Already have an account?
-        <a href="login.html">Login</a>
-      </div>
+    </div>
 
-    </section>
+    <div class="auth-footer">
+      Already have a profile?
+      <a href="login.html">Login</a>
+    </div>
 
-  </main>
+  </section>
 
-  <script>
+</main>
 
-    document
-      .getElementById("registerForm")
-      .addEventListener("submit", function(event) {
+<script type="module">
 
-        event.preventDefault();
+import {
+  auth,
+  sendOTP,
+  verifyOTP,
+  saveProfile
+} from "./firebase.js";
 
-        const fullName =
-          document.getElementById("fullName").value.trim();
+const registerForm = document.getElementById("registerForm");
+const otpSection = document.getElementById("otpSection");
+const otpForm = document.getElementById("otpForm");
+const resendOtpBtn = document.getElementById("resendOtpBtn");
 
-        const username =
-          document.getElementById("username").value.trim();
+let confirmationResult = null;
+let phoneForOtp = "";
 
-        const countryCode =
-          document.getElementById("countryCode").value;
+function normalizePhone(countryCode, phone) {
 
-        const phone =
-          document.getElementById("phone").value.trim();
+  phone = phone.replace(/\D/g, "");
 
-        const facebook =
-          document.getElementById("facebook").value.trim();
+  if (phone.startsWith("0")) {
+    phone = phone.substring(1);
+  }
 
-        const password =
-          document.getElementById("password").value;
+  return countryCode + phone;
+}
 
-        const agreement =
-          document.getElementById("agreement").checked;
+function normalizeFacebookUrl(url) {
 
-        if (!agreement) {
-          alert("Please accept the privacy agreement.");
-          return;
-        }
+  if (!url) return "";
 
-        if (password.length < 8) {
-          alert("Password must be at least 8 characters.");
-          return;
-        }
+  try {
 
-        if (!/^https?:\\/\\/(www\\.)?facebook\\.com\\//i.test(facebook)) {
-          alert("Please enter a valid Facebook profile URL.");
-          return;
-        }
+    const parsed = new URL(url.trim());
 
-        const fullPhone =
-          countryCode + phone.replace(/^0+/, "");
+    let host = parsed.hostname.toLowerCase();
 
-        const profileData = {
-          fullName: fullName,
-          username: username,
-          phone: fullPhone,
-          facebook: facebook
-        };
+    if (host === "www.facebook.com") {
+      host = "facebook.com";
+    }
 
-        localStorage.setItem(
-          "loveroyality_pending_profile",
-          JSON.stringify(profileData)
+    if (
+      host !== "facebook.com" &&
+      host !== "m.facebook.com"
+    ) {
+      return "";
+    }
+
+    const path = parsed.pathname.replace(/\/+$/, "");
+
+    return `https://${host}${path}`.toLowerCase();
+
+  } catch {
+    return "";
+  }
+}
+
+function message(text, type = "info") {
+
+  const old = document.querySelector(".app-message");
+
+  if (old) old.remove();
+
+  const box = document.createElement("div");
+
+  box.className = `app-message ${type}`;
+  box.textContent = text;
+
+  document.body.prepend(box);
+
+  setTimeout(() => {
+    box.remove();
+  }, 4000);
+}
+
+async function sendVerificationCode() {
+
+  const countryCode =
+    document.getElementById("countryCode").value;
+
+  const phone =
+    document.getElementById("phoneNumber").value.trim();
+
+  phoneForOtp = normalizePhone(countryCode, phone);
+
+  if (phoneForOtp.length < 8) {
+
+    message(
+      "Please enter a valid phone number.",
+      "error"
+    );
+
+    return;
+  }
+
+  const sendButton =
+    document.getElementById("sendOtpBtn");
+
+  sendButton.disabled = true;
+  sendButton.textContent = "Sending OTP...";
+
+  try {
+
+    confirmationResult =
+      await sendOTP(
+        phoneForOtp,
+        "sendOtpBtn"
+      );
+
+    registerForm.style.display = "none";
+    otpSection.style.display = "block";
+
+    message(
+      "OTP sent successfully.",
+      "success"
+    );
+
+  } catch (error) {
+
+    console.error(error);
+
+    sendButton.disabled = false;
+    sendButton.textContent =
+      "Continue to Phone Verification";
+
+    message(
+      error.message ||
+      "Unable to send OTP. Please try again.",
+      "error"
+    );
+  }
+}
+
+registerForm.addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    const fullName =
+      document.getElementById("fullName").value.trim();
+
+    const username =
+      document.getElementById("username").value.trim();
+
+    const countryCode =
+      document.getElementById("countryCode").value;
+
+    const phone =
+      document.getElementById("phoneNumber").value.trim();
+
+    const facebookUrl =
+      document.getElementById("facebookUrl").value.trim();
+
+    const privacy =
+      document.getElementById("privacyAgree").checked;
+
+    if (!fullName || !username || !phone) {
+
+      message(
+        "Please complete all required fields.",
+        "error"
+      );
+
+      return;
+    }
+
+    if (!privacy) {
+
+      message(
+        "Please accept the privacy agreement.",
+        "error"
+      );
+
+      return;
+    }
+
+    let facebookNormalized = "";
+
+    if (facebookUrl) {
+
+      facebookNormalized =
+        normalizeFacebookUrl(facebookUrl);
+
+      if (!facebookNormalized) {
+
+        message(
+          "Please enter a valid Facebook profile URL.",
+          "error"
         );
 
-        window.location.href = "login.html";
+        return;
+      }
+    }
+
+    await sendVerificationCode();
+  }
+);
+
+otpForm.addEventListener(
+  "submit",
+  async function(event) {
+
+    event.preventDefault();
+
+    const code =
+      document.getElementById("otpCode").value.trim();
+
+    if (code.length !== 6) {
+
+      message(
+        "Please enter the 6-digit OTP.",
+        "error"
+      );
+
+      return;
+    }
+
+    const verifyButton =
+      otpForm.querySelector("button[type='submit']");
+
+    verifyButton.disabled = true;
+    verifyButton.textContent = "Verifying...";
+
+    try {
+
+      if (!confirmationResult) {
+        throw new Error("OTP session expired. Please request a new OTP.");
+      }
+
+      const result =
+        await confirmationResult.confirm(code);
+
+      const user = result.user;
+
+      const fullName =
+        document.getElementById("fullName").value.trim();
+
+      const username =
+        document.getElementById("username").value.trim();
+
+      const facebookUrl =
+        document.getElementById("facebookUrl").value.trim();
+
+      const facebookNormalized =
+        normalizeFacebookUrl(facebookUrl);
+
+      await saveProfile(user.uid, {
+
+        fullName,
+        username,
+
+        phone: phoneForOtp,
+        phoneNormalized: phoneForOtp,
+
+        facebookUrl,
+        facebookUrlNormalized: facebookNormalized,
+
+        phoneVerified: true,
+
+        publicSearch: true,
+
+        profileStatus: "active",
+
+        partnerName: "",
+
+        relationshipStatus: "Single / Not specified"
 
       });
 
-  </script>
+      message(
+        "Profile created successfully!",
+        "success"
+      );
+
+      setTimeout(() => {
+
+        window.location.href =
+          `profile.html?uid=${encodeURIComponent(user.uid)}`;
+
+      }, 1000);
+
+    } catch (error) {
+
+      console.error(error);
+
+      verifyButton.disabled = false;
+      verifyButton.textContent =
+        "Verify & Create Profile";
+
+      message(
+        error.message ||
+        "OTP verification failed.",
+        "error"
+      );
+    }
+  }
+);
+
+resendOtpBtn.addEventListener(
+  "click",
+  async function() {
+
+    if (!phoneForOtp) return;
+
+    try {
+
+      confirmationResult =
+        await sendOTP(
+          phoneForOtp,
+          "resendOtpBtn"
+        );
+
+      message(
+        "A new OTP has been sent.",
+        "success"
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+      message(
+        error.message ||
+        "Unable to resend OTP.",
+        "error"
+      );
+    }
+  }
+);
+
+</script>
 
 </body>
 </html>
