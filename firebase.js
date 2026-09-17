@@ -42,14 +42,21 @@ const db = getFirestore(app);
 
 
 let confirmationResult = null;
-
 let recaptchaVerifier = null;
 
 
-function setupRecaptcha(buttonId) {
+function setupRecaptcha(buttonId = "sendOtpBtn") {
 
   if (recaptchaVerifier) {
     return recaptchaVerifier;
+  }
+
+  const button = document.getElementById(buttonId);
+
+  if (!button) {
+    throw new Error(
+      "OTP button was not found. Please check the button ID."
+    );
   }
 
   recaptchaVerifier = new RecaptchaVerifier(
@@ -59,11 +66,17 @@ function setupRecaptcha(buttonId) {
       size: "invisible",
 
       callback: () => {
-        console.log("reCAPTCHA verified.");
+        console.log("Invisible reCAPTCHA verified.");
       },
 
       "expired-callback": () => {
         console.log("reCAPTCHA expired.");
+
+        try {
+          recaptchaVerifier.clear();
+        } catch (e) {}
+
+        recaptchaVerifier = null;
       }
     }
   );
@@ -72,15 +85,15 @@ function setupRecaptcha(buttonId) {
 }
 
 
-async function sendOTP(phoneNumber, buttonId) {
+async function sendOTP(phoneNumber, buttonId = "sendOtpBtn") {
 
   if (!phoneNumber) {
     throw new Error("Phone number is required.");
   }
 
-  const verifier = setupRecaptcha(buttonId);
-
   try {
+
+    const verifier = setupRecaptcha(buttonId);
 
     confirmationResult =
       await signInWithPhoneNumber(
@@ -94,7 +107,7 @@ async function sendOTP(phoneNumber, buttonId) {
   } catch (error) {
 
     console.error(
-      "OTP sending error:",
+      "Firebase OTP Error:",
       error
     );
 
@@ -102,9 +115,7 @@ async function sendOTP(phoneNumber, buttonId) {
 
       try {
         recaptchaVerifier.clear();
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
 
       recaptchaVerifier = null;
     }
@@ -128,10 +139,22 @@ async function verifyOTP(code) {
     );
   }
 
-  const result =
-    await confirmationResult.confirm(code);
+  try {
 
-  return result;
+    const result =
+      await confirmationResult.confirm(code);
+
+    return result;
+
+  } catch (error) {
+
+    console.error(
+      "OTP Verification Error:",
+      error
+    );
+
+    throw error;
+  }
 }
 
 
@@ -140,14 +163,12 @@ async function logoutUser() {
   await signOut(auth);
 
   confirmationResult = null;
-
 }
 
 
 function getCurrentUser() {
 
   return auth.currentUser;
-
 }
 
 
@@ -157,7 +178,6 @@ function watchAuthState(callback) {
     auth,
     callback
   );
-
 }
 
 
@@ -180,7 +200,7 @@ async function saveProfile(profileData) {
     await getDoc(profileRef);
 
 
-  const baseData = {
+  const profile = {
 
     uid: uid,
 
@@ -188,13 +208,18 @@ async function saveProfile(profileData) {
       profileData.fullName?.trim() || "",
 
     username:
-      profileData.username?.trim().toLowerCase() || "",
+      profileData.username
+        ?.trim()
+        .toLowerCase() || "",
 
     phone:
-      profileData.phone || user.phoneNumber || "",
+      profileData.phone ||
+      user.phoneNumber ||
+      "",
 
     facebookUrl:
-      profileData.facebookUrl?.trim() || "",
+      profileData.facebookUrl
+        ?.trim() || "",
 
     relationshipStatus:
       profileData.relationshipStatus ||
@@ -205,10 +230,11 @@ async function saveProfile(profileData) {
       profileData.publicSearch === true,
 
     phoneVerified:
-      user.phoneNumber ? true : false,
+      true,
 
     profileStatus:
-      profileData.profileStatus || "active",
+      profileData.profileStatus ||
+      "active",
 
     updatedAt:
       serverTimestamp()
@@ -217,15 +243,14 @@ async function saveProfile(profileData) {
 
   if (!existing.exists()) {
 
-    baseData.createdAt =
+    profile.createdAt =
       serverTimestamp();
-
   }
 
 
   await setDoc(
     profileRef,
-    baseData,
+    profile,
     {
       merge: true
     }
@@ -233,8 +258,8 @@ async function saveProfile(profileData) {
 
 
   return {
-    uid: uid,
-    ...baseData
+    uid,
+    ...profile
   };
 }
 
@@ -251,9 +276,11 @@ async function getProfile(uid) {
   const snapshot =
     await getDoc(profileRef);
 
+
   if (!snapshot.exists()) {
     return null;
   }
+
 
   return {
     id: snapshot.id,
@@ -262,7 +289,9 @@ async function getProfile(uid) {
 }
 
 
-async function searchProfilesByPhone(phoneNumber) {
+async function searchProfilesByPhone(
+  phoneNumber
+) {
 
   if (!phoneNumber) {
     return [];
@@ -271,34 +300,35 @@ async function searchProfilesByPhone(phoneNumber) {
   const profilesRef =
     collection(db, "profiles");
 
-  const q =
-    query(
-      profilesRef,
 
-      where(
-        "phone",
-        "==",
-        phoneNumber
-      ),
+  const q = query(
 
-      where(
-        "publicSearch",
-        "==",
-        true
-      ),
+    profilesRef,
 
-      where(
-        "phoneVerified",
-        "==",
-        true
-      ),
+    where(
+      "phone",
+      "==",
+      phoneNumber
+    ),
 
-      where(
-        "profileStatus",
-        "==",
-        "active"
-      )
-    );
+    where(
+      "publicSearch",
+      "==",
+      true
+    ),
+
+    where(
+      "phoneVerified",
+      "==",
+      true
+    ),
+
+    where(
+      "profileStatus",
+      "==",
+      "active"
+    )
+  );
 
 
   const snapshot =
@@ -307,11 +337,15 @@ async function searchProfilesByPhone(phoneNumber) {
 
   const results = [];
 
+
   snapshot.forEach((item) => {
 
     results.push({
+
       id: item.id,
+
       ...item.data()
+
     });
 
   });
@@ -321,7 +355,9 @@ async function searchProfilesByPhone(phoneNumber) {
 }
 
 
-async function searchProfilesByFacebook(facebookUrl) {
+async function searchProfilesByFacebook(
+  facebookUrl
+) {
 
   if (!facebookUrl) {
     return [];
@@ -330,34 +366,35 @@ async function searchProfilesByFacebook(facebookUrl) {
   const profilesRef =
     collection(db, "profiles");
 
-  const q =
-    query(
-      profilesRef,
 
-      where(
-        "facebookUrl",
-        "==",
-        facebookUrl.trim()
-      ),
+  const q = query(
 
-      where(
-        "publicSearch",
-        "==",
-        true
-      ),
+    profilesRef,
 
-      where(
-        "phoneVerified",
-        "==",
-        true
-      ),
+    where(
+      "facebookUrl",
+      "==",
+      facebookUrl.trim()
+    ),
 
-      where(
-        "profileStatus",
-        "==",
-        "active"
-      )
-    );
+    where(
+      "publicSearch",
+      "==",
+      true
+    ),
+
+    where(
+      "phoneVerified",
+      "==",
+      true
+    ),
+
+    where(
+      "profileStatus",
+      "==",
+      "active"
+    )
+  );
 
 
   const snapshot =
@@ -366,11 +403,15 @@ async function searchProfilesByFacebook(facebookUrl) {
 
   const results = [];
 
+
   snapshot.forEach((item) => {
 
     results.push({
+
       id: item.id,
+
       ...item.data()
+
     });
 
   });
@@ -380,26 +421,32 @@ async function searchProfilesByFacebook(facebookUrl) {
 }
 
 
-async function searchProfiles(searchValue) {
+async function searchProfiles(
+  searchValue
+) {
 
   if (!searchValue) {
     return [];
   }
+
 
   const value =
     searchValue.trim();
 
 
   if (
+
     value.startsWith("http://") ||
+
     value.startsWith("https://") ||
+
     value.includes("facebook.com")
+
   ) {
 
     return searchProfilesByFacebook(
       value
     );
-
   }
 
 
@@ -410,23 +457,33 @@ async function searchProfiles(searchValue) {
 
 
 export {
+
   app,
+
   auth,
+
   db,
 
   setupRecaptcha,
 
   sendOTP,
+
   verifyOTP,
 
   saveProfile,
+
   getProfile,
 
   searchProfiles,
+
   searchProfilesByPhone,
+
   searchProfilesByFacebook,
 
   logoutUser,
+
   getCurrentUser,
+
   watchAuthState
+
 };
