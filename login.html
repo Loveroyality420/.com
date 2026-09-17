@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to your Loveroyality profile.">
+  <title>Login — Loveroyality</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .login-page {
+      min-height: calc(100vh - 76px);
+      padding: 55px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(246, 220, 229, 0.75),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 75%,
+          rgba(215, 173, 98, 0.12),
+          transparent 28%
+        ),
+        linear-gradient(
+          135deg,
+          #fffaf7 0%,
+          #fff1f5 50%,
+          #fffaf7 100%
+        );
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 450px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(91, 16, 38, 0.1);
+      border-radius: 26px;
+      box-shadow: 0 25px 70px rgba(91, 16, 38, 0.13);
+      backdrop-filter: blur(18px);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .login-heart {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background: linear-gradient(
+        135deg,
+        #fff0f4,
+        #f8dce6
+      );
+      font-size: 25px;
+      box-shadow: 0 10px 25px rgba(201, 79, 114, 0.12);
+    }
+
+    .login-header h1 {
+      color: var(--burgundy);
+      font-size: 31px;
+      letter-spacing: -1px;
+      margin-bottom: 7px;
+    }
+
+    .login-header p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .login-form-group {
+      margin-bottom: 18px;
+    }
+
+    .login-form-group label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--burgundy);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .login-input {
+      width: 100%;
+      height: 51px;
+      padding: 0 15px;
+      border: 1px solid rgba(91, 16, 38, 0.13);
+      border-radius: 12px;
+      outline: none;
+      background: #fffafa;
+      color: var(--text);
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .login-input:focus {
+      border-color: var(--rose);
+      background: #fff;
+      box-shadow:
+        0 0 0 4px rgba(201, 79, 114, 0.08);
+    }
+
+    .password-box {
+      position: relative;
+    }
+
+    .password-box .login-input {
+      padding-right: 72px;
+    }
+
+    .show-password {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: var(--wine);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .login-button {
+      width: 100%;
+      height: 52px;
+      margin-top: 5px;
+      border: 0;
+      border-radius: 13px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--burgundy),
+          var(--wine)
+        );
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow:
+        0 12px 28px rgba(91, 16, 38, 0.22);
+      transition: 0.25s ease;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 16px 32px rgba(91, 16, 38, 0.28);
+    }
+
+    .forgot-password {
+      display: block;
+      margin-top: 15px;
+      text-align: center;
+      color: var(--wine);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 27px 0;
+      color: #a9959c;
+      font-size: 11px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: rgba(91, 16, 38, 0.1);
+    }
+
+    .create-account {
+      display: block;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      border: 1px solid rgba(91, 16, 38, 0.15);
+      border-radius: 13px;
+      color: var(--burgundy);
+      background: #fffafa;
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .create-account:hover {
+      background: var(--soft-pink);
+      border-color: rgba(201, 79, 114, 0.25);
+    }
+
+    .security-note {
+      margin-top: 23px;
+      padding: 13px 15px;
+      border-radius: 13px;
+      background: #fff5f8;
+      border: 1px solid rgba(201, 79, 114, 0.1);
+      color: #765c66;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .security-note strong {
+      color: var(--burgundy);
+    }
+
+    @media (max-width: 520px) {
+      .login-page {
+        padding: 30px 14px;
+      }
+
+      .login-card {
+        padding: 28px 20px;
+        border-radius: 21px;
+      }
+
+      .login-header h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+
+    <a href="index.html" class="logo">
+      Loveroyality
+    </a>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html" class="nav-button">
+        Create Profile
+      </a>
+    </nav>
+
+  </header>
+
+  <main class="login-page">
+
+    <section class="login-card">
+
+      <div class="login-header">
+
+        <div class="login-heart">
+          ❤️
+        </div>
+
+        <h1>Welcome Back</h1>
+
+        <p>
+          Login to manage your Loveroyality profile.
+        </p>
+
+      </div>
+
+      <form id="loginForm">
+
+        <div class="login-form-group">
+
+          <label for="loginPhone">
+            Phone Number
+          </label>
+
+          <input
+            id="loginPhone"
+            class="login-input"
+            type="tel"
+            placeholder="+8801XXXXXXXXX"
+            autocomplete="tel"
+            required
+          >
+
+        </div>
+
+        <div class="login-form-group">
+
+          <label for="loginPassword">
+            Password
+          </label>
+
+          <div class="password-box">
+
+            <input
+              id="loginPassword"
+              class="login-input"
+              type="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              id="togglePassword"
+            >
+              SHOW
+            </button>
+
+          </div>
+
+        </div>
+
+        <button
+          type="submit"
+          class="login-button"
+        >
+          Login
+        </button>
+
+      </form>
+
+      <a href="#" class="forgot-password" id="forgotPassword">
+        Forgot password?
+      </a>
+
+      <div class="divider">
+        OR
+      </div>
+
+      <a
+        href="register.html"
+        class="create-account"
+      >
+        Create New Profile
+      </a>
+
+      <div class="security-note">
+        <strong>🔐 Secure verification</strong><br>
+        Important account changes will require phone
+        verification. Never share your OTP with anyone.
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const passwordInput =
+      document.getElementById("loginPassword");
+
+    const togglePassword =
+      document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", function () {
+
+      if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+        togglePassword.textContent = "HIDE";
+
+      } else {
+
+        passwordInput.type = "password";
+        togglePassword.textContent = "SHOW";
+
+      }
+
+    });
+
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const phone =
+          document.getElementById("loginPhone")
+            .value.trim();
+
+        const password =
+          document.getElementById("loginPassword")
+            .value;
+
+        if (!phone || !password) {
+          alert("Please enter your phone number and password.");
+          return;
+        }
+
+        alert(
+          "Firebase authentication will be connected here."
+        );
+
+      });
+
+    document
+      .getElementById("forgotPassword")
+      .addEventListener("click", function(event) {
+
+        event.preventDefault();
+
+        alert(
+          "Password recovery will be connected with Firebase."
+        );
+
+      });
+
+  </script>
+
+</body>
+</html>
