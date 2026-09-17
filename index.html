@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Loveroyality - Verified relationship profile directory">
+  <title>Loveroyality</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">Loveroyality</a>
+
+    <nav>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="nav-button">Create Profile</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="badge">❤️ Verified Profiles</div>
+
+        <h1>Know. Connect.<br><span>Verify.</span></h1>
+
+        <p>
+          Search verified public profiles using a phone number
+          or Facebook profile URL.
+        </p>
+
+        <div class="search-card">
+
+          <div class="search-tabs">
+            <button class="tab active" onclick="selectSearch('phone')">
+              Phone Number
+            </button>
+
+            <button class="tab" onclick="selectSearch('facebook')">
+              Facebook URL
+            </button>
+          </div>
+
+          <form id="searchForm">
+
+            <div class="input-wrapper">
+              <span id="searchIcon">📱</span>
+
+              <input
+                id="searchInput"
+                type="tel"
+                placeholder="Enter phone number"
+                autocomplete="off"
+                required
+              >
+            </div>
+
+            <button type="submit" class="search-button">
+              Search Profile
+            </button>
+
+          </form>
+
+          <p class="search-note">
+            Only profiles that have chosen to be publicly searchable
+            can appear in results.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+
+      <div class="feature">
+        <div class="feature-icon">🔐</div>
+        <h3>OTP Verified</h3>
+        <p>
+          Phone verification helps confirm ownership of the
+          registered number.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">❤️</div>
+        <h3>Relationship Profiles</h3>
+        <p>
+          Users can voluntarily publish their relationship information.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🛡️</div>
+        <h3>Privacy Controls</h3>
+        <p>
+          Users control what information is publicly visible.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="how-it-works">
+
+      <div class="section-title">
+        <span>HOW IT WORKS</span>
+        <h2>Simple & Verified</h2>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Create Profile</h3>
+          <p>
+            Register your profile and verify your phone number
+            with OTP.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Add Relationship</h3>
+          <p>
+            Add relationship information with the required
+            consent and verification.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Search</h3>
+          <p>
+            Search profiles using an approved phone number
+            or Facebook URL.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-logo">Loveroyality</div>
+
+    <p>
+      A consent-based relationship profile directory.
+    </p>
+
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <p class="copyright">
+      © 2026 Loveroyality. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+
+    let searchType = "phone";
+
+    function selectSearch(type) {
+
+      searchType = type;
+
+      const input = document.getElementById("searchInput");
+      const icon = document.getElementById("searchIcon");
+      const tabs = document.querySelectorAll(".tab");
+
+      tabs.forEach(tab => tab.classList.remove("active"));
+
+      if (type === "phone") {
+
+        tabs[0].classList.add("active");
+
+        input.type = "tel";
+        input.placeholder = "Enter phone number";
+        icon.textContent = "📱";
+
+      } else {
+
+        tabs[1].classList.add("active");
+
+        input.type = "url";
+        input.placeholder = "Paste Facebook profile URL";
+        icon.textContent = "🔗";
+
+      }
+    }
+
+    document
+      .getElementById("searchForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const value =
+          document.getElementById("searchInput").value.trim();
+
+        if (!value) return;
+
+        const params = new URLSearchParams();
+
+        params.set("type", searchType);
+        params.set("q", value);
+
+        window.location.href =
+          "search.html?" + params.toString();
+
+      });
+
+  </script>
+
+</body>
+  </html>
