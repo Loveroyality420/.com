@@ -3,220 +3,735 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Loveroyality - Verified relationship profile directory">
-  <title>Loveroyality</title>
+
+  <title>Loveroyality — Relationship Profiles</title>
+  <meta
+    name="description"
+    content="Loveroyality is a consent-based relationship profile platform where verified users can create and search public relationship profiles."
+  >
+
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    .home-page {
+      min-height: calc(100vh - 76px);
+    }
+
+    .hero {
+      min-height: 650px;
+      padding: 80px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      margin-bottom: 20px;
+      border-radius: 30px;
+      background: var(--pink);
+      color: var(--wine);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .hero-text h1 {
+      max-width: 680px;
+      margin-bottom: 20px;
+      color: var(--burgundy);
+      font-size: clamp(40px, 6vw, 70px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
+
+    .hero-text h1 span {
+      color: var(--rose);
+    }
+
+    .hero-text p {
+      max-width: 610px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      min-height: 52px;
+      padding: 0 22px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: 0.25s ease;
+    }
+
+    .hero-btn.primary {
+      color: var(--white);
+      background: linear-gradient(
+        135deg,
+        var(--burgundy),
+        var(--wine)
+      );
+      box-shadow: 0 12px 28px rgba(91, 16, 38, 0.22);
+    }
+
+    .hero-btn.secondary {
+      color: var(--burgundy);
+      background: var(--pink);
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 390px;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .love-card {
+      width: min(100%, 390px);
+      padding: 32px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      box-shadow: 0 25px 70px rgba(91, 16, 38, 0.14);
+    }
+
+    .love-heart {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--wine);
+      font-size: 43px;
+      box-shadow: 0 15px 35px rgba(120, 28, 61, 0.13);
+    }
+
+    .love-card h2 {
+      margin-bottom: 8px;
+      color: var(--burgundy);
+      font-size: 25px;
+    }
+
+    .love-card p {
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .verified-box {
+      padding: 13px;
+      border-radius: 13px;
+      background: var(--soft-pink);
+      color: #237342;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .floating-heart {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(91, 16, 38, 0.1);
+      color: var(--rose);
+      font-size: 21px;
+    }
+
+    .floating-heart.one {
+      top: 30px;
+      right: 20px;
+    }
+
+    .floating-heart.two {
+      bottom: 35px;
+      left: 5px;
+    }
+
+    .features {
+      padding: 75px 6%;
+      background: rgba(246, 220, 229, 0.28);
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 10px;
+      color: var(--burgundy);
+      font-size: 34px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .feature-grid {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      padding: 28px 23px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(91, 16, 38, 0.06);
+      transition: 0.25s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(91, 16, 38, 0.1);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: var(--pink);
+      color: var(--wine);
+      font-size: 21px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 7px;
+      color: var(--burgundy);
+      font-size: 17px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .how-section {
+      padding: 80px 6%;
+    }
+
+    .steps {
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 25px 18px;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--burgundy);
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin-bottom: 7px;
+      color: var(--burgundy);
+      font-size: 17px;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .cta-section {
+      padding: 70px 6%;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255,255,255,0.22),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          var(--burgundy),
+          var(--wine)
+        );
+      color: var(--white);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 10px;
+      font-size: 34px;
+    }
+
+    .cta-section p {
+      max-width: 600px;
+      margin: 0 auto 25px;
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      min-height: 50px;
+      padding: 0 22px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: var(--white);
+      color: var(--burgundy);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .footer {
+      padding: 30px 6%;
+      text-align: center;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      margin-bottom: 7px;
+      color: var(--burgundy);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .footer p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .footer-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--wine);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        padding: 55px 5%;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+
+      .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-card {
+        min-height: 330px;
+      }
+
+      .feature-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        text-align: center;
+      }
+
+      .feature-icon {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .home-page {
+        min-height: calc(100vh - 68px);
+      }
+
+      .hero {
+        padding: 45px 18px;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+        letter-spacing: -1.5px;
+      }
+
+      .hero-text p {
+        font-size: 14px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-btn {
+        width: 100%;
+      }
+
+      .hero-card {
+        min-height: 300px;
+        padding: 15px;
+      }
+
+      .love-card {
+        padding: 26px 20px;
+      }
+
+      .features,
+      .how-section,
+      .cta-section {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .section-heading h2,
+      .cta-section h2 {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-text h1 {
+        font-size: 36px;
+      }
+
+      .love-heart {
+        width: 75px;
+        height: 75px;
+        font-size: 35px;
+      }
+
+      .floating-heart {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <header class="navbar">
-    <a href="index.html" class="logo">Loveroyality</a>
+<header class="navbar">
 
-    <nav>
-      <a href="login.html">Login</a>
-      <a href="register.html" class="nav-button">Create Profile</a>
-    </nav>
-  </header>
+  <a href="index.html" class="logo">
+    Loveroyality ❤️
+  </a>
 
-  <main>
+  <nav>
+    <a href="search.html">Search</a>
+    <a href="login.html">Login</a>
+    <a href="register.html" class="nav-btn">Create Profile</a>
+  </nav>
 
-    <section class="hero">
-      <div class="hero-content">
-        <div class="badge">❤️ Verified Profiles</div>
+</header>
 
-        <h1>Know. Connect.<br><span>Verify.</span></h1>
+<main class="home-page">
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-text">
+
+        <div class="hero-badge">
+          ❤️ Verified Relationship Profiles
+        </div>
+
+        <h1>
+          Your Relationship,
+          <span>Your Story.</span>
+        </h1>
 
         <p>
-          Search verified public profiles using a phone number
-          or Facebook profile URL.
+          Loveroyality is a consent-based platform where verified
+          users can create their relationship profile and make it
+          discoverable through secure public search.
         </p>
 
-        <div class="search-card">
+        <div class="hero-buttons">
 
-          <div class="search-tabs">
-            <button class="tab active" onclick="selectSearch('phone')">
-              Phone Number
-            </button>
+          <a
+            href="register.html"
+            class="hero-btn primary"
+          >
+            Create Your Profile ❤️
+          </a>
 
-            <button class="tab" onclick="selectSearch('facebook')">
-              Facebook URL
-            </button>
+          <a
+            href="search.html"
+            class="hero-btn secondary"
+          >
+            Search Profile
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="hero-card">
+
+        <div class="floating-heart one">♥</div>
+        <div class="floating-heart two">♡</div>
+
+        <div class="love-card">
+
+          <div class="love-heart">
+            ❤️
           </div>
 
-          <form id="searchForm">
+          <h2>
+            Love. Trust. Loyalty.
+          </h2>
 
-            <div class="input-wrapper">
-              <span id="searchIcon">📱</span>
-
-              <input
-                id="searchInput"
-                type="tel"
-                placeholder="Enter phone number"
-                autocomplete="off"
-                required
-              >
-            </div>
-
-            <button type="submit" class="search-button">
-              Search Profile
-            </button>
-
-          </form>
-
-          <p class="search-note">
-            Only profiles that have chosen to be publicly searchable
-            can appear in results.
-          </p>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="features">
-
-      <div class="feature">
-        <div class="feature-icon">🔐</div>
-        <h3>OTP Verified</h3>
-        <p>
-          Phone verification helps confirm ownership of the
-          registered number.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">❤️</div>
-        <h3>Relationship Profiles</h3>
-        <p>
-          Users can voluntarily publish their relationship information.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">🛡️</div>
-        <h3>Privacy Controls</h3>
-        <p>
-          Users control what information is publicly visible.
-        </p>
-      </div>
-
-    </section>
-
-    <section class="how-it-works">
-
-      <div class="section-title">
-        <span>HOW IT WORKS</span>
-        <h2>Simple & Verified</h2>
-      </div>
-
-      <div class="steps">
-
-        <div class="step">
-          <div class="step-number">01</div>
-          <h3>Create Profile</h3>
           <p>
-            Register your profile and verify your phone number
-            with OTP.
+            Create your verified relationship profile
+            and share only what you choose to make public.
           </p>
-        </div>
 
-        <div class="step">
-          <div class="step-number">02</div>
-          <h3>Add Relationship</h3>
-          <p>
-            Add relationship information with the required
-            consent and verification.
-          </p>
-        </div>
+          <div class="verified-box">
+            ✓ Phone Verified &nbsp; • &nbsp; Consent Based
+          </div>
 
-        <div class="step">
-          <div class="step-number">03</div>
-          <h3>Search</h3>
-          <p>
-            Search profiles using an approved phone number
-            or Facebook URL.
-          </p>
         </div>
 
       </div>
 
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="footer-logo">Loveroyality</div>
-
-    <p>
-      A consent-based relationship profile directory.
-    </p>
-
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
     </div>
 
-    <p class="copyright">
-      © 2026 Loveroyality. All rights reserved.
+  </section>
+
+  <section class="features">
+
+    <div class="section-heading">
+
+      <h2>Made for Real Relationships</h2>
+
+      <p>
+        Simple tools designed around verification,
+        consent and relationship identity.
+      </p>
+
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+
+        <div class="feature-icon">🔐</div>
+
+        <h3>Phone Verification</h3>
+
+        <p>
+          Profiles use phone OTP verification to
+          help establish account ownership.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">❤️</div>
+
+        <h3>Relationship Profile</h3>
+
+        <p>
+          Create a profile with your relationship
+          information and chosen public details.
+        </p>
+
+      </div>
+
+      <div class="feature-card">
+
+        <div class="feature-icon">🔎</div>
+
+        <h3>Easy Search</h3>
+
+        <p>
+          Search participating profiles using an
+          approved phone identifier or Facebook URL.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="how-section">
+
+    <div class="section-heading">
+
+      <h2>How Loveroyality Works</h2>
+
+      <p>
+        Three simple steps to create and discover
+        consent-based relationship profiles.
+      </p>
+
+    </div>
+
+    <div class="steps">
+
+      <div class="step">
+
+        <div class="step-number">1</div>
+
+        <h3>Create Profile</h3>
+
+        <p>
+          Enter your basic information and
+          verify your phone number with OTP.
+        </p>
+
+      </div>
+
+      <div class="step">
+
+        <div class="step-number">2</div>
+
+        <h3>Choose Visibility</h3>
+
+        <p>
+          Decide whether your verified profile
+          should be available through public search.
+        </p>
+
+      </div>
+
+      <div class="step">
+
+        <div class="step-number">3</div>
+
+        <h3>Search & Connect</h3>
+
+        <p>
+          Find participating profiles using the
+          available search identifiers.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="cta-section">
+
+    <h2>
+      Ready to Create Your Story?
+    </h2>
+
+    <p>
+      Join Loveroyality and create a verified
+      relationship profile that you control.
     </p>
-  </footer>
 
-  <script>
+    <a
+      href="register.html"
+      class="cta-btn"
+    >
+      Create Profile ❤️
+    </a>
 
-    let searchType = "phone";
+  </section>
 
-    function selectSearch(type) {
+</main>
 
-      searchType = type;
+<footer class="footer">
 
-      const input = document.getElementById("searchInput");
-      const icon = document.getElementById("searchIcon");
-      const tabs = document.querySelectorAll(".tab");
+  <div class="footer-logo">
+    Loveroyality ❤️
+  </div>
 
-      tabs.forEach(tab => tab.classList.remove("active"));
+  <p>
+    A consent-based relationship profile platform.
+  </p>
 
-      if (type === "phone") {
+  <div class="footer-links">
 
-        tabs[0].classList.add("active");
+    <a href="index.html">Home</a>
+    <a href="search.html">Search</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Create Profile</a>
 
-        input.type = "tel";
-        input.placeholder = "Enter phone number";
-        icon.textContent = "📱";
+  </div>
 
-      } else {
-
-        tabs[1].classList.add("active");
-
-        input.type = "url";
-        input.placeholder = "Paste Facebook profile URL";
-        icon.textContent = "🔗";
-
-      }
-    }
-
-    document
-      .getElementById("searchForm")
-      .addEventListener("submit", function(event) {
-
-        event.preventDefault();
-
-        const value =
-          document.getElementById("searchInput").value.trim();
-
-        if (!value) return;
-
-        const params = new URLSearchParams();
-
-        params.set("type", searchType);
-        params.set("q", value);
-
-        window.location.href =
-          "search.html?" + params.toString();
-
-      });
-
-  </script>
+</footer>
 
 </body>
-  </html>
+</html>
