@@ -4,11 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="description"
-    content="Search public verified Loveroyality profiles."
-  >
-
   <title>Search Profiles — Loveroyality</title>
 
   <link rel="stylesheet" href="style.css">
@@ -16,19 +11,7 @@
   <style>
     .search-page {
       min-height: calc(100vh - 76px);
-      padding: 55px 18px 80px;
-      background:
-        radial-gradient(
-          circle at 12% 15%,
-          rgba(246, 220, 229, 0.72),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 88% 75%,
-          rgba(215, 173, 98, 0.12),
-          transparent 28%
-        ),
-        #fffaf7;
+      padding: 55px 20px;
     }
 
     .search-container {
@@ -37,300 +20,175 @@
       margin: auto;
     }
 
-    .search-header {
+    .search-card {
+      padding: 35px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .search-heading {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
-    .search-header .small-title {
-      color: var(--rose);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
+    .search-icon {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--wine);
+      font-size: 25px;
     }
 
-    .search-header h1 {
-      margin-top: 9px;
+    .search-heading h1 {
+      margin-bottom: 7px;
       color: var(--burgundy);
-      font-size: 40px;
-      letter-spacing: -1.5px;
+      font-size: 30px;
     }
 
-    .search-header p {
-      max-width: 570px;
-      margin: 10px auto 0;
+    .search-heading p {
       color: var(--muted);
-      font-size: 13px;
-    }
-
-    .search-box {
-      padding: 10px;
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(91,16,38,.1);
-      border-radius: 22px;
-      box-shadow: 0 20px 55px rgba(91,16,38,.11);
+      font-size: 14px;
     }
 
     .search-tabs {
-      display: flex;
-      gap: 6px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 18px;
       padding: 5px;
-      margin-bottom: 8px;
       background: var(--soft-pink);
       border-radius: 14px;
     }
 
     .search-tab {
-      flex: 1;
-      min-height: 42px;
-      border: 0;
+      min-height: 43px;
+      border: none;
       border-radius: 10px;
       background: transparent;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
-      cursor: pointer;
+      transition: 0.2s ease;
     }
 
     .search-tab.active {
-      background: #fff;
+      background: var(--white);
       color: var(--burgundy);
-      box-shadow: 0 5px 16px rgba(91,16,38,.08);
+      box-shadow: 0 5px 15px rgba(91, 16, 38, 0.08);
     }
 
-    .search-form {
-      display: flex;
-      gap: 9px;
-      padding: 5px;
+    .search-input-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
     }
 
     .search-input {
-      flex: 1;
-      min-width: 0;
-      height: 53px;
+      width: 100%;
+      height: 52px;
       padding: 0 16px;
-      border: 1px solid rgba(91,16,38,.12);
+      border: 1px solid var(--border);
       border-radius: 13px;
       outline: none;
-      background: #fffafa;
+      background: var(--white);
       color: var(--text);
-      font-size: 13px;
     }
 
     .search-input:focus {
       border-color: var(--rose);
-      background: #fff;
-      box-shadow: 0 0 0 4px rgba(201,79,114,.08);
+      box-shadow: 0 0 0 4px rgba(201, 79, 114, 0.1);
     }
 
-    .search-submit {
-      min-width: 135px;
-      height: 53px;
+    .search-btn {
+      min-width: 120px;
       padding: 0 18px;
-      border: 0;
+      border: none;
       border-radius: 13px;
       background: linear-gradient(
         135deg,
         var(--burgundy),
         var(--wine)
       );
-      color: #fff;
-      font-size: 12px;
+      color: var(--white);
+      font-size: 13px;
       font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 10px 24px rgba(91,16,38,.2);
     }
 
-    .search-info {
-      margin-top: 10px;
-      padding: 0 8px 5px;
-      color: #9a858d;
-      font-size: 10px;
-      text-align: center;
+    .search-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
     }
 
-    .results-section {
-      margin-top: 35px;
-    }
-
-    .results-heading {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
-    .results-heading h2 {
-      color: var(--burgundy);
-      font-size: 18px;
-    }
-
-    .result-count {
+    .search-note {
+      margin-top: 14px;
       color: var(--muted);
       font-size: 11px;
-    }
-
-    .empty-state {
-      padding: 45px 25px;
       text-align: center;
-      background: #fff;
-      border: 1px solid rgba(91,16,38,.09);
-      border-radius: 20px;
-      box-shadow: 0 12px 35px rgba(91,16,38,.06);
-    }
-
-    .empty-icon {
-      font-size: 38px;
-      margin-bottom: 12px;
-    }
-
-    .empty-state h3 {
-      color: var(--burgundy);
-      font-size: 18px;
-      margin-bottom: 6px;
-    }
-
-    .empty-state p {
-      max-width: 430px;
-      margin: auto;
-      color: var(--muted);
-      font-size: 12px;
       line-height: 1.6;
     }
 
-    .profile-result {
-      display: none;
-      padding: 20px;
-      background: #fff;
-      border: 1px solid rgba(91,16,38,.09);
-      border-radius: 20px;
-      box-shadow: 0 12px 35px rgba(91,16,38,.07);
+    .results {
+      margin-top: 22px;
     }
 
-    .result-top {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .result-avatar {
-      width: 62px;
-      height: 62px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: linear-gradient(
-        135deg,
-        #f6dce5,
-        #fff5f8
-      );
-      font-size: 25px;
-    }
-
-    .result-name {
+    .results-title {
+      margin-bottom: 13px;
       color: var(--burgundy);
       font-size: 18px;
-      font-weight: 800;
     }
 
-    .result-username {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .verified-label {
+    .result-facebook {
       display: inline-block;
-      margin-top: 5px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #fff1f5;
+      margin-top: 4px;
       color: var(--wine);
-      font-size: 9px;
-      font-weight: 800;
-    }
-
-    .result-relationship {
-      margin-top: 17px;
-      padding: 14px;
-      border-radius: 13px;
-      background: #fff7f9;
-      color: var(--burgundy);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
     }
 
-    .result-actions {
-      display: flex;
-      gap: 9px;
-      margin-top: 15px;
+    .result-facebook:hover {
+      text-decoration: underline;
     }
 
-    .result-button {
-      min-height: 42px;
-      padding: 0 14px;
-      border: 1px solid rgba(91,16,38,.12);
-      border-radius: 10px;
-      background: #fff;
-      color: var(--burgundy);
-      font-size: 11px;
-      font-weight: 800;
-      cursor: pointer;
+    .search-error {
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 13px;
+      background: #fde8ed;
+      color: #8b1837;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
     }
 
-    .result-button.primary {
-      border: 0;
-      background: var(--burgundy);
-      color: #fff;
-    }
-
-    .privacy-message {
-      margin-top: 25px;
-      padding: 16px;
-      border-radius: 15px;
-      background: #fff5f8;
-      color: #765c66;
-      font-size: 11px;
-      line-height: 1.6;
-    }
-
-    .privacy-message strong {
-      color: var(--burgundy);
-    }
-
-    @media (max-width: 600px) {
-
+    @media (max-width: 700px) {
       .search-page {
-        padding: 35px 14px 60px;
+        min-height: calc(100vh - 68px);
+        padding: 28px 14px;
       }
 
-      .search-header h1 {
-        font-size: 31px;
+      .search-card {
+        padding: 25px 18px;
+        border-radius: 21px;
       }
 
-      .search-form {
-        flex-direction: column;
+      .search-heading h1 {
+        font-size: 25px;
       }
 
-      .search-submit {
+      .search-input-row {
+        grid-template-columns: 1fr;
+      }
+
+      .search-btn {
         width: 100%;
-      }
-
-      .search-tabs {
-        flex-direction: column;
-      }
-
-      .search-tab {
-        width: 100%;
-      }
-
-      .result-actions {
-        flex-direction: column;
-      }
-
-      .result-button {
-        width: 100%;
+        height: 50px;
       }
     }
   </style>
@@ -338,362 +196,471 @@
 
 <body>
 
-  <header class="navbar">
+<header class="navbar">
 
-    <a href="index.html" class="logo">
-      Loveroyality
-    </a>
+  <a href="index.html" class="logo">
+    Loveroyality ❤️
+  </a>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="login.html" class="nav-button">
-        Login
-      </a>
-    </nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+    <a href="register.html" class="nav-btn">Create Profile</a>
+  </nav>
 
-  </header>
+</header>
 
-  <main class="search-page">
+<main class="search-page">
 
-    <div class="search-container">
+  <div class="search-container">
 
-      <div class="search-header">
+    <section class="search-card">
 
-        <div class="small-title">
-          PROFILE DIRECTORY
+      <div class="search-heading">
+
+        <div class="search-icon">
+          🔎
         </div>
 
-        <h1>Find a Profile</h1>
+        <h1>Search Profiles</h1>
 
         <p>
-          Search profiles using a phone number or a
-          Facebook profile URL.
+          Find verified profiles that have chosen to be publicly searchable.
         </p>
 
       </div>
 
-      <section class="search-box">
+      <div class="search-tabs">
 
-        <div class="search-tabs">
-
-          <button
-            class="search-tab active"
-            id="phoneTab"
-            type="button"
-          >
-            📱 Phone Number
-          </button>
-
-          <button
-            class="search-tab"
-            id="facebookTab"
-            type="button"
-          >
-            🔗 Facebook URL
-          </button>
-
-        </div>
-
-        <form
-          class="search-form"
-          id="profileSearchForm"
+        <button
+          type="button"
+          id="phoneTab"
+          class="search-tab active"
         >
+          📱 Phone Number
+        </button>
+
+        <button
+          type="button"
+          id="facebookTab"
+          class="search-tab"
+        >
+          Facebook URL
+        </button>
+
+      </div>
+
+      <form id="searchForm">
+
+        <div class="search-input-row">
 
           <input
-            id="profileSearchInput"
+            type="text"
+            id="searchInput"
             class="search-input"
-            type="tel"
             placeholder="Enter phone number"
             autocomplete="off"
             required
           >
 
           <button
-            class="search-submit"
             type="submit"
+            id="searchBtn"
+            class="search-btn"
           >
             Search
           </button>
 
-        </form>
-
-        <div class="search-info">
-          Only profiles that have opted into public search
-          can appear in results.
         </div>
 
-      </section>
+      </form>
 
-      <section class="results-section">
+      <div class="search-note">
+        🔐 Only verified, active profiles with public search enabled
+        can appear in results.
+      </div>
 
-        <div class="results-heading">
+      <div id="results" class="results"></div>
 
-          <h2>Search Results</h2>
+    </section>
 
-          <span
-            class="result-count"
-            id="resultCount"
-          >
-            0 profiles
-          </span>
+  </div>
 
-        </div>
+</main>
 
-        <div
-          class="empty-state"
-          id="emptyState"
-        >
+<script type="module">
 
-          <div class="empty-icon">
-            🔎
+import {
+  searchProfiles
+} from "./firebase.js";
+
+
+const searchForm =
+  document.getElementById("searchForm");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const searchBtn =
+  document.getElementById("searchBtn");
+
+const phoneTab =
+  document.getElementById("phoneTab");
+
+const facebookTab =
+  document.getElementById("facebookTab");
+
+const results =
+  document.getElementById("results");
+
+
+let searchType = "phone";
+
+
+phoneTab.addEventListener("click", () => {
+
+  searchType = "phone";
+
+  phoneTab.classList.add("active");
+  facebookTab.classList.remove("active");
+
+  searchInput.placeholder =
+    "Enter phone number";
+
+  searchInput.value = "";
+
+  searchInput.focus();
+
+});
+
+
+facebookTab.addEventListener("click", () => {
+
+  searchType = "facebook";
+
+  facebookTab.classList.add("active");
+  phoneTab.classList.remove("active");
+
+  searchInput.placeholder =
+    "Enter Facebook profile URL";
+
+  searchInput.value = "";
+
+  searchInput.focus();
+
+});
+
+
+function escapeHTML(value) {
+
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+function maskPhone(phone) {
+
+  if (!phone) {
+    return "Verified phone";
+  }
+
+  const value = String(phone);
+
+  if (value.length <= 7) {
+    return value;
+  }
+
+  return (
+    value.substring(0, 4) +
+    "••••" +
+    value.substring(value.length - 3)
+  );
+}
+
+
+function formatRelationship(status) {
+
+  if (!status) {
+    return "Not specified";
+  }
+
+  const map = {
+
+    single: "Single",
+
+    relationship:
+      "In a Relationship",
+
+    engaged:
+      "Engaged",
+
+    married:
+      "Married",
+
+    complicated:
+      "It's Complicated"
+
+  };
+
+  return map[status] || status;
+}
+
+
+function renderResults(data) {
+
+  if (!data.length) {
+
+    results.innerHTML = `
+      <div class="empty-result">
+        <h3>No Profile Found</h3>
+        <p>
+          No verified public profile matched your search.
+        </p>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  results.innerHTML = `
+    <h2 class="results-title">
+      Search Results
+    </h2>
+
+    ${data.map(profile => {
+
+      const name =
+        escapeHTML(
+          profile.fullName ||
+          "Loveroyality User"
+        );
+
+      const username =
+        profile.username
+          ? "@" + escapeHTML(profile.username)
+          : "Verified Member";
+
+      const relationship =
+        escapeHTML(
+          formatRelationship(
+            profile.relationshipStatus ||
+            profile.relationship
+          )
+        );
+
+      const phone =
+        escapeHTML(
+          maskPhone(profile.phone)
+        );
+
+      const facebook =
+        profile.facebookUrl
+          ? `
+            <a
+              href="${escapeHTML(profile.facebookUrl)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="result-facebook"
+            >
+              View Facebook Profile
+            </a>
+          `
+          : "";
+
+      return `
+        <article class="profile-result-card">
+
+          <div class="result-avatar">
+            ${escapeHTML(
+              (profile.fullName || "❤️")
+                .charAt(0)
+                .toUpperCase()
+            )}
           </div>
 
-          <h3>Search for a profile</h3>
+          <div class="result-info">
 
-          <p>
-            Enter a verified phone number or Facebook
-            profile URL to find a public Loveroyality profile.
-          </p>
+            <h3>${name}</h3>
 
-        </div>
+            <p>
+              ${username}
+            </p>
 
-        <div
-          class="profile-result"
-          id="profileResult"
-        >
+            <span class="verified-result">
+              ✓ Verified Profile
+            </span>
 
-          <div class="result-top">
+            <br>
 
-            <div class="result-avatar">
-              👤
-            </div>
-
-            <div>
-
-              <div
-                class="result-name"
-                id="resultName"
-              >
-                Profile Name
-              </div>
-
-              <div
-                class="result-username"
-                id="resultUsername"
-              >
-                @username
-              </div>
-
-              <span class="verified-label">
-                ✓ Phone Verified
-              </span>
-
-            </div>
+            ${facebook}
 
           </div>
 
           <div class="result-relationship">
 
-            ❤️ Relationship:
-            <span id="resultRelationship">
-              Verified relationship information
-            </span>
+            <small>
+              Relationship
+            </small>
+
+            <strong>
+              ${relationship}
+            </strong>
+
+            <small>
+              ${phone}
+            </small>
 
           </div>
 
-          <div class="result-actions">
+          <button
+            type="button"
+            class="view-profile-btn"
+            data-id="${escapeHTML(profile.id)}"
+          >
+            View Profile
+          </button>
 
-            <button
-              class="result-button primary"
-              id="viewProfile"
-              type="button"
-            >
-              View Profile
-            </button>
+        </article>
+      `;
 
-            <button
-              class="result-button"
-              id="facebookProfile"
-              type="button"
-            >
-              Facebook
-            </button>
+    }).join("")}
+  `;
 
-          </div>
 
+  document
+    .querySelectorAll(".view-profile-btn")
+    .forEach(button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const id =
+            button.dataset.id;
+
+          if (id) {
+            window.location.href =
+              `profile.html?id=${encodeURIComponent(id)}`;
+          }
+
+        }
+      );
+
+    });
+
+}
+
+
+searchForm.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+    let value =
+      searchInput.value.trim();
+
+    if (!value) {
+
+      results.innerHTML = `
+        <div class="search-error">
+          Please enter something to search.
         </div>
+      `;
 
-      </section>
+      return;
+    }
 
-      <div class="privacy-message">
 
-        <strong>🛡️ Privacy protection</strong><br>
+    if (searchType === "phone") {
 
-        Search results are limited to profiles whose owners
-        have voluntarily enabled public discovery. Private
-        information such as passwords or private account data
-        is never displayed.
+      value =
+        value.replace(/\s+/g, "");
 
+      if (value.startsWith("0")) {
+
+        value =
+          "+880" +
+          value.substring(1);
+
+      }
+
+      if (
+        !value.startsWith("+") ||
+        value.length < 8
+      ) {
+
+        results.innerHTML = `
+          <div class="search-error">
+            Please enter a valid phone number.
+          </div>
+        `;
+
+        return;
+      }
+
+    } else {
+
+      if (
+        !value.includes("facebook.com")
+      ) {
+
+        results.innerHTML = `
+          <div class="search-error">
+            Please enter a valid Facebook profile URL.
+          </div>
+        `;
+
+        return;
+      }
+
+    }
+
+
+    searchBtn.disabled = true;
+    searchBtn.textContent = "Searching...";
+
+    results.innerHTML = `
+      <div class="search-loading">
+        Searching verified profiles...
       </div>
+    `;
 
-    </div>
 
-  </main>
+    try {
 
-  <script>
+      const data =
+        await searchProfiles(value);
 
-    let searchType = "phone";
+      renderResults(data);
 
-    const phoneTab =
-      document.getElementById("phoneTab");
+    } catch (error) {
 
-    const facebookTab =
-      document.getElementById("facebookTab");
+      console.error(error);
 
-    const searchInput =
-      document.getElementById("profileSearchInput");
+      results.innerHTML = `
+        <div class="search-error">
+          Search failed. Please try again.
+        </div>
+      `;
 
-    const searchForm =
-      document.getElementById("profileSearchForm");
+    } finally {
 
-    const emptyState =
-      document.getElementById("emptyState");
+      searchBtn.disabled = false;
+      searchBtn.textContent = "Search";
 
-    const profileResult =
-      document.getElementById("profileResult");
-
-    const resultCount =
-      document.getElementById("resultCount");
-
-    function setSearchType(type) {
-
-      searchType = type;
-
-      phoneTab.classList.remove("active");
-      facebookTab.classList.remove("active");
-
-      if (type === "phone") {
-
-        phoneTab.classList.add("active");
-
-        searchInput.type = "tel";
-        searchInput.placeholder =
-          "Enter phone number";
-
-      } else {
-
-        facebookTab.classList.add("active");
-
-        searchInput.type = "url";
-        searchInput.placeholder =
-          "Paste Facebook profile URL";
-
-      }
-
-      searchInput.value = "";
-      emptyState.style.display = "block";
-      profileResult.style.display = "none";
-      resultCount.textContent = "0 profiles";
     }
 
-    phoneTab.addEventListener(
-      "click",
-      () => setSearchType("phone")
-    );
+  }
+);
 
-    facebookTab.addEventListener(
-      "click",
-      () => setSearchType("facebook")
-    );
-
-    const params =
-      new URLSearchParams(window.location.search);
-
-    const initialType =
-      params.get("type");
-
-    const initialQuery =
-      params.get("q");
-
-    if (initialType === "facebook") {
-      setSearchType("facebook");
-    }
-
-    if (initialQuery) {
-      searchInput.value = initialQuery;
-    }
-
-    searchForm.addEventListener(
-      "submit",
-      function(event) {
-
-        event.preventDefault();
-
-        const query =
-          searchInput.value.trim();
-
-        if (!query) {
-          return;
-        }
-
-        /*
-          Firebase Firestore search will be connected here.
-
-          Example future flow:
-
-          Phone:
-          phone -> Firestore -> public profile
-
-          Facebook:
-          facebookUrl -> Firestore -> public profile
-
-          Only public + verified profiles should
-          be returned.
-        */
-
-        emptyState.style.display = "none";
-        profileResult.style.display = "block";
-        resultCount.textContent = "1 profile";
-
-        document.getElementById("resultName")
-          .textContent = "Demo Profile";
-
-        document.getElementById("resultUsername")
-          .textContent = "@demo";
-
-        document.getElementById("resultRelationship")
-          .textContent =
-          "Firebase verification required";
-
-      }
-    );
-
-    document
-      .getElementById("viewProfile")
-      .addEventListener(
-        "click",
-        function() {
-
-          window.location.href =
-            "profile.html";
-
-        }
-      );
-
-    document
-      .getElementById("facebookProfile")
-      .addEventListener(
-        "click",
-        function() {
-
-          alert(
-            "The verified Facebook profile link will appear here."
-          );
-
-        }
-      );
-
-  </script>
+</script>
 
 </body>
 </html>
+
