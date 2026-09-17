@@ -4,311 +4,256 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="description"
-    content="Loveroyality verified relationship profile."
-  >
-
-  <title>Profile — Loveroyality</title>
+  <title>My Profile — Loveroyality</title>
 
   <link rel="stylesheet" href="style.css">
 
   <style>
     .profile-page {
       min-height: calc(100vh - 76px);
-      padding: 55px 18px 80px;
-      background:
-        radial-gradient(
-          circle at 10% 15%,
-          rgba(246, 220, 229, 0.7),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 90% 70%,
-          rgba(215, 173, 98, 0.11),
-          transparent 28%
-        ),
-        #fffaf7;
+      padding: 55px 20px;
     }
 
     .profile-container {
       width: 100%;
-      max-width: 760px;
+      max-width: 850px;
       margin: auto;
     }
 
-    .profile-card {
-      overflow: hidden;
-      background: #fff;
-      border: 1px solid rgba(91, 16, 38, 0.1);
+    .profile-header-card {
+      padding: 35px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
       border-radius: 26px;
-      box-shadow: 0 25px 70px rgba(91, 16, 38, 0.12);
+      box-shadow: var(--shadow);
     }
 
-    .profile-cover {
-      height: 175px;
-      position: relative;
-      background:
-        radial-gradient(
-          circle at 20% 20%,
-          rgba(255,255,255,.22),
-          transparent 25%
-        ),
-        linear-gradient(
-          135deg,
-          #5b1026,
-          #781c3d 55%,
-          #b94a6d
-        );
-    }
-
-    .profile-cover::after {
-      content: "♥";
-      position: absolute;
-      right: 8%;
-      top: 15px;
-      color: rgba(255,255,255,.08);
-      font-size: 125px;
-      transform: rotate(15deg);
-    }
-
-    .profile-main {
-      position: relative;
-      padding: 0 30px 30px;
-    }
-
-    .avatar {
-      width: 108px;
-      height: 108px;
-      margin-top: -54px;
+    .profile-avatar {
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      border: 5px solid #fff;
       border-radius: 50%;
-      background:
-        linear-gradient(
-          135deg,
-          #f6dce5,
-          #fff5f8
-        );
-      color: var(--burgundy);
-      font-size: 40px;
-      box-shadow: 0 10px 30px rgba(91,16,38,.15);
-      z-index: 3;
-    }
-
-    .verified {
-      position: absolute;
-      right: -2px;
-      bottom: 3px;
-      width: 29px;
-      height: 29px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 3px solid white;
-      border-radius: 50%;
-      background: var(--rose);
-      color: white;
-      font-size: 13px;
-    }
-
-    .profile-name-row {
-      margin-top: 17px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .profile-name {
-      color: var(--burgundy);
-      font-size: 29px;
-      font-weight: 850;
-      letter-spacing: -1px;
-    }
-
-    .username {
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .status-badge {
-      flex-shrink: 0;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: #fff1f5;
-      color: var(--wine);
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .relationship-card {
-      margin-top: 27px;
-      padding: 22px;
-      border: 1px solid rgba(201, 79, 114, 0.12);
-      border-radius: 18px;
-      background:
-        linear-gradient(
-          135deg,
-          #fff7f9,
-          #fffdfb
-        );
-    }
-
-    .relationship-label {
-      margin-bottom: 8px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-    }
-
-    .relationship-status {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--burgundy);
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .heart {
-      color: var(--rose);
-    }
-
-    .partner-name {
-      color: var(--wine);
-    }
-
-    .details {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .detail-box {
-      padding: 17px;
-      border: 1px solid rgba(91,16,38,.09);
-      border-radius: 15px;
-      background: #fffafa;
-    }
-
-    .detail-title {
-      margin-bottom: 6px;
-      color: #9a858d;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .5px;
-    }
-
-    .detail-value {
-      color: var(--burgundy);
-      font-size: 13px;
-      font-weight: 700;
-      word-break: break-word;
-    }
-
-    .facebook-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-top: 20px;
-      padding: 11px 16px;
-      border-radius: 11px;
-      background: var(--burgundy);
-      color: white;
-      font-size: 12px;
-      font-weight: 800;
-      transition: .2s ease;
-    }
-
-    .facebook-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 9px 20px rgba(91,16,38,.2);
-    }
-
-    .profile-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .action-button {
-      flex: 1;
-      min-height: 47px;
-      border: 1px solid rgba(91,16,38,.13);
-      border-radius: 12px;
-      background: #fff;
-      color: var(--burgundy);
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .action-button.primary {
-      border: 0;
-      color: white;
       background: linear-gradient(
         135deg,
         var(--burgundy),
-        var(--wine)
+        var(--rose)
       );
+      color: var(--white);
+      font-size: 42px;
+      font-weight: 800;
+      box-shadow: 0 15px 35px rgba(91, 16, 38, 0.18);
+    }
+
+    .profile-header-card h1 {
+      margin-bottom: 5px;
+      color: var(--burgundy);
+      font-size: 30px;
+    }
+
+    .profile-username {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 7px 12px;
+      border-radius: 20px;
+      background: #e7f7ed;
+      color: #176437;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .relationship-box {
+      margin-top: 25px;
+      padding: 22px;
+      border-radius: 18px;
+      background: var(--soft-pink);
+      border: 1px solid var(--border);
+    }
+
+    .relationship-box small {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .relationship-box strong {
+      color: var(--wine);
+      font-size: 21px;
+    }
+
+    .profile-details {
+      margin-top: 18px;
+      padding: 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 10px 30px rgba(91, 16, 38, 0.06);
+    }
+
+    .profile-details h2 {
+      margin-bottom: 20px;
+      color: var(--burgundy);
+      font-size: 21px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .detail-item {
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--soft-pink);
+    }
+
+    .detail-item small {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .detail-item strong {
+      color: var(--text);
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .facebook-link {
+      color: var(--wine);
+      font-weight: 800;
+    }
+
+    .profile-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .profile-action {
+      min-height: 48px;
+      padding: 10px;
+      border: none;
+      border-radius: 13px;
+      background: var(--pink);
+      color: var(--burgundy);
+      font-size: 13px;
+      font-weight: 800;
+      transition: 0.25s ease;
+    }
+
+    .profile-action:hover {
+      transform: translateY(-2px);
+      background: #f0cad6;
+    }
+
+    .logout-btn {
+      background: var(--burgundy);
+      color: var(--white);
+    }
+
+    .logout-btn:hover {
+      background: var(--wine);
     }
 
     .privacy-note {
-      margin-top: 25px;
-      padding: 15px 17px;
+      margin-top: 18px;
+      padding: 16px;
       border-radius: 14px;
-      background: #fff5f8;
-      color: #765c66;
-      font-size: 11px;
+      background: #fff4d9;
+      color: #6d5010;
+      font-size: 12px;
       line-height: 1.6;
+      text-align: center;
     }
 
-    .privacy-note strong {
+    .profile-loading {
+      padding: 50px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .profile-error {
+      padding: 30px 20px;
+      text-align: center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-error h2 {
+      margin-bottom: 8px;
       color: var(--burgundy);
     }
 
-    @media (max-width: 600px) {
+    .profile-error p {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .error-btn {
+      display: inline-flex;
+      min-height: 46px;
+      padding: 0 18px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: var(--burgundy);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 700px) {
       .profile-page {
-        padding: 30px 13px 60px;
+        min-height: calc(100vh - 68px);
+        padding: 28px 14px;
       }
 
-      .profile-cover {
-        height: 140px;
+      .profile-header-card {
+        padding: 27px 18px;
+        border-radius: 21px;
       }
 
-      .profile-main {
-        padding: 0 19px 25px;
+      .profile-header-card h1 {
+        font-size: 25px;
       }
 
-      .avatar {
-        width: 92px;
-        height: 92px;
-        margin-top: -46px;
+      .profile-avatar {
+        width: 88px;
+        height: 88px;
         font-size: 34px;
       }
 
-      .profile-name-row {
-        align-items: flex-start;
-        flex-direction: column;
+      .profile-details {
+        padding: 21px 16px;
       }
 
-      .profile-name {
-        font-size: 26px;
-      }
-
-      .details {
+      .detail-grid {
         grid-template-columns: 1fr;
       }
 
       .profile-actions {
-        flex-direction: column;
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -316,214 +261,437 @@
 
 <body>
 
-  <header class="navbar">
+<header class="navbar">
 
-    <a href="index.html" class="logo">
-      Loveroyality
-    </a>
+  <a href="index.html" class="logo">
+    Loveroyality ❤️
+  </a>
 
-    <nav>
-      <a href="search.html">Search</a>
-      <a href="login.html" class="nav-button">Login</a>
-    </nav>
+  <nav>
+    <a href="search.html">Search</a>
+    <a href="index.html">Home</a>
+    <a href="#" id="logoutNav" class="nav-btn">Logout</a>
+  </nav>
 
-  </header>
+</header>
 
-  <main class="profile-page">
+<main class="profile-page">
 
-    <div class="profile-container">
+  <div class="profile-container">
 
-      <section class="profile-card">
+    <div id="profileLoading" class="profile-loading">
+      Loading your profile...
+    </div>
 
-        <div class="profile-cover"></div>
+    <div id="profileError" class="profile-error" style="display:none;">
 
-        <div class="profile-main">
+      <h2>Profile Not Found</h2>
 
-          <div class="avatar">
-            👤
+      <p id="errorText">
+        We couldn't load your profile.
+      </p>
 
-            <span class="verified">
-              ✓
-            </span>
+      <a href="login.html" class="error-btn">
+        Login Again
+      </a>
+
+    </div>
+
+    <div id="profileContent" style="display:none;">
+
+      <section class="profile-header-card">
+
+        <div id="profileAvatar" class="profile-avatar">
+          ❤️
+        </div>
+
+        <h1 id="profileName">
+          —
+        </h1>
+
+        <div id="profileUsername" class="profile-username">
+          @username
+        </div>
+
+        <div class="verified-badge">
+          ✓ Phone Verified
+        </div>
+
+        <div class="relationship-box">
+
+          <small>Relationship Status</small>
+
+          <strong id="relationshipStatus">
+            —
+          </strong>
+
+        </div>
+
+      </section>
+
+      <section class="profile-details">
+
+        <h2>Profile Information</h2>
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+
+            <small>Phone</small>
+
+            <strong id="profilePhone">
+              —
+            </strong>
+
           </div>
 
-          <div class="profile-name-row">
+          <div class="detail-item">
 
-            <div>
-              <h1 class="profile-name" id="profileName">
-                Profile Name
-              </h1>
+            <small>Facebook</small>
 
-              <div class="username" id="profileUsername">
-                @username
-              </div>
-            </div>
-
-            <div class="status-badge">
-              ✓ Phone Verified
-            </div>
-
-          </div>
-
-          <div class="relationship-card">
-
-            <div class="relationship-label">
-              RELATIONSHIP STATUS
-            </div>
-
-            <div class="relationship-status">
-
-              <span class="heart">♥</span>
-
-              <span id="relationshipText">
-                In a relationship with
-              </span>
-
-              <span
-                class="partner-name"
-                id="partnerName"
+            <strong>
+              <a
+                id="facebookLink"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="facebook-link"
               >
-                Partner
-              </span>
-
-            </div>
-
-          </div>
-
-          <div class="details">
-
-            <div class="detail-box">
-
-              <div class="detail-title">
-                PROFILE STATUS
-              </div>
-
-              <div class="detail-value">
-                Public & Verified
-              </div>
-
-            </div>
-
-            <div class="detail-box">
-
-              <div class="detail-title">
-                VERIFICATION
-              </div>
-
-              <div class="detail-value">
-                Phone OTP Verified
-              </div>
-
-            </div>
+                View Facebook
+              </a>
+            </strong>
 
           </div>
 
-          <a
-            id="facebookLink"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="facebook-button"
-          >
-            🔗 Facebook Profile
-          </a>
+          <div class="detail-item">
 
-          <div class="profile-actions">
+            <small>Profile Visibility</small>
 
-            <button
-              class="action-button primary"
-              id="editProfile"
-            >
-              Edit Profile
-            </button>
-
-            <button
-              class="action-button"
-              id="changeRelationship"
-            >
-              Change Relationship
-            </button>
+            <strong id="profileVisibility">
+              —
+            </strong>
 
           </div>
 
-          <div class="privacy-note">
-            <strong>🔐 Privacy & verification</strong><br>
-            Public information is shown only when the profile
-            owner has chosen to make it searchable. Profile
-            and relationship changes require the appropriate
-            verification and consent.
+          <div class="detail-item">
+
+            <small>Profile Status</small>
+
+            <strong id="profileStatus">
+              —
+            </strong>
+
           </div>
 
         </div>
 
       </section>
 
+      <div class="profile-actions">
+
+        <button
+          type="button"
+          class="profile-action"
+          id="searchBtn"
+        >
+          🔎 Search Profiles
+        </button>
+
+        <button
+          type="button"
+          class="profile-action"
+          id="homeBtn"
+        >
+          🏠 Home
+        </button>
+
+        <button
+          type="button"
+          class="profile-action logout-btn"
+          id="logoutBtn"
+        >
+          Logout
+        </button>
+
+      </div>
+
+      <div class="privacy-note">
+        🔐 Your profile is shown according to your selected
+        visibility and consent settings. Your full phone number
+        is not displayed publicly.
+      </div>
+
     </div>
 
-  </main>
+  </div>
 
-  <script>
+</main>
 
-    const params =
-      new URLSearchParams(window.location.search);
+<script type="module">
 
-    const name =
-      params.get("name");
+import {
+  auth,
+  getProfile,
+  logoutUser
+} from "./firebase.js";
 
-    const username =
-      params.get("username");
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
-    const partner =
-      params.get("partner");
+const profileLoading =
+  document.getElementById("profileLoading");
 
-    const facebook =
-      params.get("facebook");
+const profileError =
+  document.getElementById("profileError");
 
-    if (name) {
-      document.getElementById("profileName")
-        .textContent = name;
+const errorText =
+  document.getElementById("errorText");
+
+const profileContent =
+  document.getElementById("profileContent");
+
+const profileAvatar =
+  document.getElementById("profileAvatar");
+
+const profileName =
+  document.getElementById("profileName");
+
+const profileUsername =
+  document.getElementById("profileUsername");
+
+const relationshipStatus =
+  document.getElementById("relationshipStatus");
+
+const profilePhone =
+  document.getElementById("profilePhone");
+
+const facebookLink =
+  document.getElementById("facebookLink");
+
+const profileVisibility =
+  document.getElementById("profileVisibility");
+
+const profileStatus =
+  document.getElementById("profileStatus");
+
+const logoutBtn =
+  document.getElementById("logoutBtn");
+
+const logoutNav =
+  document.getElementById("logoutNav");
+
+const searchBtn =
+  document.getElementById("searchBtn");
+
+const homeBtn =
+  document.getElementById("homeBtn");
+
+
+function maskPhone(phone) {
+
+  if (!phone) {
+    return "Not available";
+  }
+
+  const value = String(phone);
+
+  if (value.length <= 7) {
+    return value;
+  }
+
+  return (
+    value.substring(0, 4) +
+    "••••" +
+    value.substring(value.length - 3)
+  );
+}
+
+
+function getInitial(name) {
+
+  if (!name) {
+    return "❤️";
+  }
+
+  return name
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+}
+
+
+function formatRelationship(status) {
+
+  if (!status) {
+    return "Not specified";
+  }
+
+  const value = String(status);
+
+  const statusMap = {
+    single: "Single",
+    relationship: "In a Relationship",
+    engaged: "Engaged",
+    married: "Married",
+    complicated: "It's Complicated"
+  };
+
+  return statusMap[value] || value;
+}
+
+
+function showError(message) {
+
+  profileLoading.style.display = "none";
+  profileContent.style.display = "none";
+
+  errorText.textContent = message;
+  profileError.style.display = "block";
+}
+
+
+async function loadProfile(user) {
+
+  try {
+
+    const profile = await getProfile(user.uid);
+
+    if (!profile) {
+      showError(
+        "No profile was found for this account. Please create a profile first."
+      );
+      return;
     }
 
-    if (username) {
-      document.getElementById("profileUsername")
-        .textContent = "@" + username;
+    profileName.textContent =
+      profile.fullName || "Loveroyality User";
+
+    profileUsername.textContent =
+      profile.username
+        ? "@" + profile.username
+        : "Verified Member";
+
+    profileAvatar.textContent =
+      getInitial(profile.fullName);
+
+    relationshipStatus.textContent =
+      formatRelationship(
+        profile.relationshipStatus ||
+        profile.relationship ||
+        "Not specified"
+      );
+
+    profilePhone.textContent =
+      maskPhone(profile.phone);
+
+    if (profile.facebookUrl) {
+
+      facebookLink.href = profile.facebookUrl;
+      facebookLink.style.display = "inline";
+      facebookLink.textContent = "View Facebook";
+
+    } else {
+
+      facebookLink.removeAttribute("href");
+      facebookLink.textContent = "Not provided";
+      facebookLink.style.color = "var(--muted)";
     }
 
-    if (partner) {
-      document.getElementById("partnerName")
-        .textContent = partner;
-    }
+    profileVisibility.textContent =
+      profile.publicSearch === true
+        ? "Public Search Enabled"
+        : "Private";
 
-    if (facebook) {
+    profileStatus.textContent =
+      profile.profileStatus === "active"
+        ? "Active"
+        : (profile.profileStatus || "Unknown");
 
-      const link =
-        document.getElementById("facebookLink");
+    profileLoading.style.display = "none";
+    profileError.style.display = "none";
+    profileContent.style.display = "block";
 
-      link.href = facebook;
+  } catch (error) {
 
-    }
+    console.error(error);
 
-    document
-      .getElementById("editProfile")
-      .addEventListener("click", function() {
+    showError(
+      "Unable to load your profile. Please login again."
+    );
+  }
+}
 
-        alert(
-          "Profile editing will require phone OTP verification."
-        );
 
-      });
+onAuthStateChanged(auth, async (user) => {
 
-    document
-      .getElementById("changeRelationship")
-      .addEventListener("click", function() {
+  if (!user) {
 
-        alert(
-          "Changing a relationship will require verification and consent from both people."
-        );
+    showError(
+      "You are not logged in. Please login to view your profile."
+    );
 
-      });
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1800);
 
-  </script>
+    return;
+  }
+
+  await loadProfile(user);
+
+});
+
+
+async function logout() {
+
+  try {
+
+    await logoutUser();
+
+    window.location.href = "index.html";
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Logout failed. Please try again."
+    );
+  }
+}
+
+
+logoutBtn.addEventListener(
+  "click",
+  logout
+);
+
+logoutNav.addEventListener(
+  "click",
+  (event) => {
+
+    event.preventDefault();
+    logout();
+
+  }
+);
+
+searchBtn.addEventListener(
+  "click",
+  () => {
+    window.location.href = "search.html";
+  }
+);
+
+homeBtn.addEventListener(
+  "click",
+  () => {
+    window.location.href = "index.html";
+  }
+);
+
+</script>
 
 </body>
-    </html>
+</html>
